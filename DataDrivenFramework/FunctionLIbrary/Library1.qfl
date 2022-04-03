@@ -1,0 +1,52 @@
+﻿Function login(uname,pwd)
+	msgbox "Login"
+	systemutil.Run(Environment("Flight_Path"))
+	wait(5)
+WpfWindow("Micro Focus MyFlight Sample").WpfEdit("agentName").Set uname
+WpfWindow("Micro Focus MyFlight Sample").WpfEdit("password").Set pwd
+WpfWindow("Micro Focus MyFlight Sample").WpfButton("OK").Click
+
+If WpfWindow("Micro Focus MyFlight Sample").Exist(10) Then
+	Reporter.ReportEvent micPass, "Login","Login Successful"
+	else
+	Reporter.ReportEvent micFail, "Login","Login unSuccessful"
+End If
+
+End Function
+
+Function closeapp()
+	msgbox "closeapp"
+	WpfWindow("Micro Focus MyFlight Sample").Close
+	If WpfWindow("Micro Focus MyFlight Sample").Exist(5) Then
+	Reporter.ReportEvent micFail, "closeapp","closeapp  unSuccessful"
+	else
+	Reporter.ReportEvent micPass, "closeapp","closeapp Successful"
+End If
+End Function
+
+Function openOrder(orno)
+msgbox "openOrder"
+WpfWindow("Micro Focus MyFlight Sample").WpfTabStrip("WpfTabStrip").Select "SEARCH ORDER"
+WpfWindow("Micro Focus MyFlight Sample").WpfRadioButton("byNumberRadio").Set
+WpfWindow("Micro Focus MyFlight Sample").WpfEdit("byNumberWatermark").Set orno
+WpfWindow("Micro Focus MyFlight Sample").WpfButton("SEARCH").Click
+WpfWindow("Micro Focus MyFlight Sample").WpfButton("NEW SEARCH").Click
+If WpfWindow("Micro Focus MyFlight Sample").Exist(10) Then
+	Reporter.ReportEvent micPass, "openOrder","openOrder Successful"
+	else
+	Reporter.ReportEvent micFail, "openOrder","openOrder  unSuccessful"
+End If
+
+End Function
+
+Function updateOrder()
+	msgbox "updateOrder"
+	WpfWindow("Micro Focus MyFlight Sample").WpfComboBox("numOfTicketsCombo").Select "3"
+	WpfWindow("Micro Focus MyFlight Sample").WpfButton("updateBtn").Click
+	If WpfWindow("Micro Focus MyFlight Sample").Exist(10) Then
+	Reporter.ReportEvent micPass, "updateOrder","updateOrder Successful"
+	else
+	Reporter.ReportEvent micFail, "updateOrder","updateOrder  unSuccessful"
+End If
+
+End Function

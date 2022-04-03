@@ -1,0 +1,6 @@
+<Environment>
+	<Variable>
+		<Name>Flight_Path</Name>
+		<Value><![CDATA["C:\Program Files (x86)\Micro Focus\UFT One\samples\Flights Application\FlightsGUI.exe]]></Value>
+	</Variable>
+</Environment>
